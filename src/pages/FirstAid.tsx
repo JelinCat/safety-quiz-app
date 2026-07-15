@@ -26,11 +26,15 @@ export default function FirstAid() {
   };
 
   const handleLearnQuiz = (category: CommonSenseCategory) => {
-    console.log('学习答题:', category.title);
+    navigate(`/first-aid/${category.id}`);
   };
 
   const handleViewContent = (category: CommonSenseCategory) => {
-    console.log('查看内容:', category.title);
+    navigate(`/first-aid/${category.id}`);
+  };
+
+  const handleCardClick = (category: CommonSenseCategory) => {
+    navigate(`/first-aid/${category.id}`);
   };
 
   return (
@@ -44,7 +48,8 @@ export default function FirstAid() {
           {firstAidCategories.map((category) => (
             <div 
               key={category.id} 
-              className="bg-white rounded-xl shadow-sm overflow-hidden"
+              onClick={() => handleCardClick(category)}
+              className="bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform"
             >
               <div className="relative h-[98px] overflow-hidden">
                 <img 
@@ -73,7 +78,10 @@ export default function FirstAid() {
                 
                 <div className="flex gap-3 ml-[-8px] mr-[-8px] w-[306px]">
                   <button
-                    onClick={() => handleLearnQuiz(category)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLearnQuiz(category);
+                    }}
                     className="flex-1 bg-[#5888f9] text-white py-[10px] h-[40px] rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-transform"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +90,10 @@ export default function FirstAid() {
                     学习答题
                   </button>
                   <button
-                    onClick={() => handleViewContent(category)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleViewContent(category);
+                    }}
                     className="flex-1 bg-[#e8f0fe] text-[#5888f9] py-[10px] h-[40px] rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-transform"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

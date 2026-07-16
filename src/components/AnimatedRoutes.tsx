@@ -8,6 +8,7 @@ import CommonSense from '@/pages/CommonSense';
 import FirstAid from '@/pages/FirstAid';
 import FirstAidDetail from '@/pages/FirstAidDetail';
 import CommonSenseDetail from '@/pages/CommonSenseDetail';
+import DailyAnswerPage from '@/pages/DailyAnswerPage';
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -27,9 +28,10 @@ export default function AnimatedRoutes() {
     prevPath.current = location.pathname;
   };
 
-  const isForward = location.pathname.startsWith('/quiz') || 
-                   location.pathname.startsWith('/answer') || 
-                   location.pathname.startsWith('/common/') || 
+  const isForward = location.pathname.startsWith('/quiz') ||
+                   location.pathname.startsWith('/answer') ||
+                   location.pathname.startsWith('/daily/') ||
+                   location.pathname.startsWith('/common/') ||
                    location.pathname.startsWith('/first-aid/');
 
   return (
@@ -50,6 +52,7 @@ export default function AnimatedRoutes() {
                     <Route path="/first-aid" element={<FirstAid />} />
                     <Route path="/quiz/:categoryId" element={<Quiz />} />
                     <Route path="/answer/:categoryId/:questionId" element={<AnswerPage />} />
+                    <Route path="/daily/:id" element={<DailyAnswerPage />} />
                     <Route path="/common/:id" element={<CommonSenseDetail />} />
                   </Routes>
                 </div>
@@ -65,6 +68,7 @@ export default function AnimatedRoutes() {
                     <Route path="/first-aid" element={<FirstAid />} />
                     <Route path="/quiz/:categoryId" element={<Quiz />} />
                     <Route path="/answer/:categoryId/:questionId" element={<AnswerPage />} />
+                    <Route path="/daily/:id" element={<DailyAnswerPage />} />
                     <Route path="/common/:id" element={<CommonSenseDetail />} />
                   </Routes>
                 </div>
@@ -79,6 +83,7 @@ export default function AnimatedRoutes() {
                 <Route path="/first-aid" element={<FirstAid />} />
                 <Route path="/quiz/:categoryId" element={<Quiz />} />
                 <Route path="/answer/:categoryId/:questionId" element={<AnswerPage />} />
+                <Route path="/daily/:id" element={<DailyAnswerPage />} />
                 <Route path="/common/:id" element={<CommonSenseDetail />} />
               </Routes>
             </div>

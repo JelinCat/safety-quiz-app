@@ -27,6 +27,19 @@ export interface DailyLearning {
   imageUrl: string;
 }
 
+export interface DailyLearningAnalysisItem {
+  title: string;
+  content: string;
+  image: string;
+}
+
+export interface DailyLearningAnswer {
+  id: string;
+  question: string;
+  imageUrl: string;
+  analysis: DailyLearningAnalysisItem[];
+}
+
 export interface NavItem {
   id: string;
   label: string;
@@ -89,6 +102,100 @@ export const dailyLearningItems: DailyLearning[] = [
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bicycle%20brake%20safety%20riding%20technique%20cycling%20tips&image_size=landscape_16_9'
   }
 ];
+
+export const dailyLearningAnswers: Record<string, DailyLearningAnswer> = {
+  '1': {
+    id: '1',
+    question: '高铁站台为什么不能打伞？',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=high%20speed%20rail%20platform%20umbrella%20danger%20high%20voltage%20catenary%20warning%20safety%20illustration&image_size=landscape_16_9',
+    analysis: [
+      {
+        title: '高压触电风险',
+        content: '站台接触网2.75万伏，伞尖距网不足2米即放电触电。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=high%20voltage%20railway%20catenary%20warning%20sign%20electricity%20danger%20icon%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '雨天正确做法',
+        content: '用雨衣或到雨棚下避雨，勿撑伞靠近安全白线。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=passenger%20wearing%20raincoat%20waiting%20on%20train%20platform%20safety%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '乘车规范',
+        content: '上下车前提前收伞，听从引导站在白线内。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=fold%20umbrella%20boarding%20train%20door%20passenger%20safety%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '长杆物品禁忌',
+        content: '鱼竿、气球杆等长杆物品在站台也勿高举。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=long%20fishing%20rod%20balloon%20stick%20danger%20warning%20on%20railway%20platform%20flat%20illustration%20white%20background&image_size=square'
+      }
+    ]
+  },
+  '2': {
+    id: '2',
+    question: '台风预警怎么看？',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=typhoon%20warning%20signal%20four%20color%20levels%20blue%20yellow%20orange%20red%20weather%20forecast%20safety&image_size=landscape_16_9',
+    analysis: [
+      {
+        title: '四色预警体系',
+        content: '蓝、黄、橙、红四色，颜色越深级别越高。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=typhoon%20four%20color%20warning%20signal%20blue%20yellow%20orange%20red%20icon%20set%20flat%20design%20white%20background&image_size=square'
+      },
+      {
+        title: '蓝色预警',
+        content: '24小时内风力6级以上，做好防风准备。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=blue%20typhoon%20warning%20signal%20icon%20light%20wind%20clouds%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '黄色预警',
+        content: '24小时内风力8级以上，进入防风状态。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=yellow%20typhoon%20warning%20signal%20icon%20storm%20approaching%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '橙色预警',
+        content: '12小时内风力10级以上，避免外出。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=orange%20typhoon%20warning%20signal%20icon%20strong%20wind%20storm%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '红色预警',
+        content: '6小时内风力12级以上，听从撤离安排。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=red%20typhoon%20warning%20signal%20icon%20severe%20storm%20emergency%20flat%20illustration%20white%20background&image_size=square'
+      }
+    ]
+  },
+  '3': {
+    id: '3',
+    question: '自行车如何正确刹车？',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bicycle%20brake%20system%20front%20rear%20brake%20lever%20cycling%20safety%20technique%20illustration&image_size=landscape_16_9',
+    analysis: [
+      {
+        title: '前后刹配合',
+        content: '同时使用前后刹，前刹为主、后刹为辅。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bicycle%20front%20rear%20brake%20levers%20handlebar%20closeup%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '重心后移',
+        content: '刹车时重心后移，双臂微曲撑把防前翻。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cyclist%20braking%20body%20position%20weight%20back%20arms%20bent%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '勿猛捏前刹',
+        content: '下坡猛捏前刹易前翻，先点后刹再渐进加力。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bicycle%20front%20brake%20skid%20flip%20over%20danger%20warning%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '雨天点刹',
+        content: '湿滑路刹车距离变长，提前减速点刹防抱死。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=rainy%20wet%20road%20bicycle%20cycling%20safety%20braking%20flat%20illustration%20white%20background&image_size=square'
+      },
+      {
+        title: '定期检查',
+        content: '查刹车片磨损与刹车线松紧，确保灵敏有效。',
+        image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bicycle%20maintenance%20brake%20pad%20inspection%20repair%20flat%20illustration%20white%20background&image_size=square'
+      }
+    ]
+  }
+};
 
 export const knowledgeCategories: KnowledgeCategory[] = [
   {
@@ -263,7 +370,7 @@ export const firstAidDetails: FirstAidDetail[] = [
           {
             id: 3,
             title: '翻转婴儿',
-            description: '将婴儿翻转过来，面朝上，放在你的大腿或前臂上。',
+            description: '如果异物仍未排出，则翻转婴儿，面朝上，放在你的大腿或前臂上。',
             imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Heimlich%20maneuver%20infant%20step%203%20flip%20baby%20face%20up%20medical%20illustration%20flat%20design%20blue%20white&image_size=portrait_4_3'
           },
           {
@@ -275,7 +382,7 @@ export const firstAidDetails: FirstAidDetail[] = [
           {
             id: 5,
             title: '交替重复',
-            description: '交替进行背部拍击和胸部冲击，直到异物排出或婴儿失去意识。',
+            description: '交替进行背部拍击和胸部按压，直到异物排出。',
             imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Heimlich%20maneuver%20infant%20step%205%20alternate%20back%20slaps%20chest%20thrusts%20medical%20illustration%20flat%20design%20blue%20white&image_size=portrait_4_3'
           }
         ]
@@ -307,12 +414,6 @@ export const firstAidDetails: FirstAidDetail[] = [
             title: '重复动作',
             description: '重复冲击动作，直到异物排出或有人前来协助。',
             imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Heimlich%20self%20rescue%20step%204%20repeat%20thrusts%20medical%20illustration%20flat%20design%20blue%20white&image_size=portrait_4_3'
-          },
-          {
-            id: 5,
-            title: '寻求帮助',
-            description: '在自救的同时，大声呼救，吸引周围人的注意。',
-            imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Heimlich%20self%20rescue%20step%205%20call%20for%20help%20shout%20medical%20illustration%20flat%20design%20blue%20white&image_size=portrait_4_3'
           }
         ]
       }

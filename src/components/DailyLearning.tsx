@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { dailyLearningItems } from '@/data/mockData';
+import { useNavigate } from 'react-router-dom';
+import { dailyLearningItems, type DailyLearning } from '@/data/mockData';
 
 export default function DailyLearning() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -7,8 +8,11 @@ export default function DailyLearning() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  
+  const navigate = useNavigate();
+
   const startXRef = useRef(0);
+  const dragStartXRef = useRef(0);
+  const hasDraggedRef = useRef(false);
   const currentTranslateRef = useRef(0);
   const velocityRef = useRef(0);
   const lastMoveTimeRef = useRef(0);
@@ -61,9 +65,11 @@ export default function DailyLearning() {
     setIsDragging(true);
     setIsTransitioning(false);
     startXRef.current = clientX;
+    dragStartXRef.current = clientX;
+    hasDraggedRef.current = false;
     lastMoveTimeRef.current = Date.now();
     velocityRef.current = 0;
-    
+
     if (trackRef.current) {
       trackRef.current.style.transition = 'none';
     }
@@ -71,7 +77,11 @@ export default function DailyLearning() {
 
   const handleMove = useCallback((clientX: number) => {
     if (!isDragging) return;
-    
+
+    if (Math.abs(clientX - dragStartXRef.current) > 5) {
+      hasDraggedRef.current = true;
+    }
+
     const now = Date.now();
     const deltaX = clientX - startXRef.current;
     const deltaTime = now - lastMoveTimeRef.current;
@@ -203,6 +213,12 @@ export default function DailyLearning() {
     }
   }, [totalSlides, isTransitioning, stopAutoPlay, snapToIndex, startAutoPlay, autoPlayInterval]);
 
+  const handleCardClick = useCallback((item: DailyLearning) => {
+    // 拖动滑动后不触发跳转，避免误触
+    if (hasDraggedRef.current) return;
+    navigate(`/daily/${item.id}`, { state: { title: item.question } });
+  }, [navigate]);
+
   useEffect(() => {
     currentTranslateRef.current = -currentIndex * (slideWidth + padding);
   }, []);
@@ -229,8 +245,9 @@ export default function DailyLearning() {
           {dailyLearningItems.map((item) => (
             <div
               key={item.id}
-              className="relative rounded-2xl overflow-hidden flex-shrink-0 cursor-grab active:cursor-grabbing"
+              className="relative rounded-2xl overflow-hidden flex-shrink-0 cursor-pointer active:cursor-grabbing"
               style={{ width: slideWidth, height: cardHeight }}
+              onClick={() => handleCardClick(item)}
             >
               <img
                 src={item.imageUrl}
